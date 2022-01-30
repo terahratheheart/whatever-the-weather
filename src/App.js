@@ -14,7 +14,7 @@ function App() {
 
 
   function callApi(location) {
-    fetch(`${process.env.REACT_APP_API_URL}weather?q=${location}&appid=${process.env.REACT_APP_API_KEY}`)
+    fetch(`${process.env.REACT_APP_API_URL}weather?q=${location}&appid=${process.env.REACT_APP_API_KEY}units=imperial`)
       .then(res => res.json())
       .then(result => {
         setWeatherData(result)
@@ -37,7 +37,7 @@ function App() {
       </HStack>
 
     {weatherData && !error ? 
-    <CurrentWeatherCard weatherData={weatherData} /> 
+    <CurrentWeatherCard data-testid="weather-card" weatherData={weatherData} /> 
     : ""}
 
     {error? <ErrorMessage weatherData={weatherData}/>: ""}
