@@ -4,6 +4,7 @@ import { toDegrees } from '../../utils/utils.js';
 
 
 const CurrentWeatherCard = ({weatherData}) => (
+
     <Box  maxW="2xl" borderWidth='1px' borderRadius='lg' margin="1em" bg="gray.100">
 
         <VStack>
@@ -16,7 +17,6 @@ const CurrentWeatherCard = ({weatherData}) => (
         <HStack>
         <Heading size="sm">hi: {toDegrees(weatherData.main.temp_max)}&deg;F</Heading>
         <Heading size="md">|</Heading>
-        {/* <Heading size="sm">lo: {Math.round(parseInt(weatherData.main.temp_min))}&deg;F</Heading> */}
         <Heading size="sm">lo: {toDegrees(weatherData.main.temp_min)}&deg;F</Heading>
 
         </HStack>

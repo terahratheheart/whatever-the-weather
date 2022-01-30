@@ -1,9 +1,10 @@
 
 import './App.css';
 import React, { useState } from "react";
-import { Input, Button, HStack, Heading, Container, Center, Box } from '@chakra-ui/react'
+import {HStack, Heading, Container, Center } from '@chakra-ui/react'
 import CurrentWeatherCard from './components/weather-card/weather-card'
 import ErrorMessage from './components/error/error';
+import InputButton from './components/button/button'
 import CityInput from './components/input/city-input';
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
 
 
   function callApi(location) {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=6609dcee5071d6ce0054da54da985d9e&units=imperial`)
+    fetch(`${process.env.REACT_APP_API_URL}weather?q=${location}&appid=${process.env.REACT_APP_API_KEY}`)
       .then(res => res.json())
       .then(result => {
         setWeatherData(result)
@@ -32,12 +33,7 @@ function App() {
       </Center>
       <HStack>
         <CityInput callback={setLocation}/>
-      <Button 
-        size="lg"
-        onClick={() => {
-        callApi(location)}}>
-          Get Forecast
-      </Button>
+        <InputButton callback={callApi} location={location} />
       </HStack>
 
     {weatherData && !error ? 
